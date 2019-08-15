@@ -7,5 +7,4 @@ Redesign Money App UI/UX
 ![Alt text](./src/img/mobile.jpg)
 
 #### Web
-![Alt text](./src/img/Web_1280_1.jpg)
-![Alt text](./src/img/Web_1280_2.jpg)
+![Alt text](./src/img/Web.jpg)
