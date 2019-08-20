@@ -1,8 +1,7 @@
 import React from 'react';
-import { createMuiTheme, withStyles, makeStyles } from '@material-ui/core/styles';
-import { ThemeProvider } from '@material-ui/styles';
+import { withStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
-import { green, purple } from '@material-ui/core/colors';
+
 
 export const MustardButton = withStyles((theme) => {
     return ({
@@ -13,10 +12,10 @@ export const MustardButton = withStyles((theme) => {
                 backgroundColor: "#b39b2b",
             },
             borderRadius: "40px",
-            padding: theme.spacing(2),
+            padding: '10px 0px',
             fontSize: "20px",
             fontWeight: "bold",
-            minWidth: "300px",
+            // minWidth: "300px",
         },
     })
 })(Button)
@@ -30,10 +29,10 @@ export const GreenButton = withStyles((theme) => {
                 backgroundColor: "#3a814a",
             },
             borderRadius: "40px",
-            padding: theme.spacing(2),
+            padding: '10px 0px',
             fontSize: "20px",
             fontWeight: "bold",
-            minWidth: "300px",
+            // minWidth: "300px",
         },
     })
 })(Button)

@@ -1,71 +1,81 @@
 import React from 'react';
-import { Container, Grid, TextField, InputAdornment } from '@material-ui/core';
-import MailIcon from '@material-ui/icons/MailOutlineOutlined'
-import { makeStyles } from '@material-ui/core/styles'
+import { Container, Grid, TextField, Hidden } from '@material-ui/core';
+import MailIcon from '@material-ui/icons/MailOutlineOutlined';
+import { makeStyles } from '@material-ui/core/styles';
 import MainTitle from './MainTitle';
 import { MustardButton } from '../CustomizedUI/Button';
-import { textAlign, border } from '@material-ui/system';
+import { ValidationTextField } from '../CustomizedUI/Textfield';
 
 const useStyle = makeStyles(theme => ({
-    TextField: {
-        color: 'black',
-        border: '5px',
+    root: {
+        paddingLeft: theme.spacing(4),
+        paddingRight: theme.spacing(4),
     },
-    input: {
-        color: 'green',
-    }
 }))
 
-
-
 function Footer() {
-    const classes = useStyle()
-    const inputProps = {
-        fontSize: '50px'
-    };
     return (
-        <Grid container>
+        <Grid container spacing={3}>
             <Grid item xs={12}>
-                <TextField
-                    id="filled-adornment-password"
-                    placeholder="Email"
+                <ValidationTextField
                     variant="outlined"
-                    type="text"
-                    className={classes.TextField}
-                    InputProps={{
-                        className: classes.input,
-                    }}
-
+                    fullWidth
+                    label="Email"
                 />
             </Grid>
-            <Grid item>
-                <MustardButton>Go</MustardButton>
+            <Grid item xs={12}>
+                <ValidationTextField
+                    variant="outlined"
+                    fullWidth
+                    label="Password"
+                />
+            </Grid>
+            <Grid item xs={12}>
+                <MustardButton fullWidth>Go</MustardButton>
             </Grid>
         </Grid>
     )
 }
 
-export default function Login() {
+function MobileDisplay() {
+    const classes = useStyle()
     return (
-        <div>
-            <Container maxWidth="xs">
-                <Grid
-                    container
-                    spacing={8}
-                    direction="column"
-                    alignItems="center"
-                    justify="center"
-                    style={{ minHeight: '100vh' }}
-                >
-                    <Grid item xs={12}>
-                        <MainTitle />
-                    </Grid>
+        <Container maxWidth="xs" className={classes.root}>
+            <Grid
+                container
+                spacing={6}
+                direction="column"
+                alignItems="center"
+                justify="center"
+                style={{ minHeight: '100vh' }}
+            >
+                <Grid item xs={12}>
+                    <MainTitle />
+                </Grid>
+                <Hidden mdUp>
                     <Grid item xs={12}>
                         <Footer />
                     </Grid>
+                </Hidden>
+            </Grid>
+        </Container>
+    )
+}
+
+export default function Login() {
+    return (
+        <React.Fragment>
+            <Grid container>
+                <Grid item xs={12} md={5}>
+                    <MobileDisplay />
                 </Grid>
-            </Container>
-        </div>
+                <Hidden smDown>
+                    <Grid item md={7} style={{ backgroundColor: 'white', margin: 0, height: '100vh' }}>
+                        <div> 123</div>
+                    </Grid>
+                </Hidden>
+            </Grid>
+        </React.Fragment>
 
     )
 }

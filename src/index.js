@@ -4,7 +4,7 @@ import { createStore, compose, applyMiddleware } from 'redux';
 import { Provider } from 'react-redux';
 import thunk from 'redux-thunk';
 import RootReducer from './store/reducer/RootReducer';
-import Main from './component/auth/Login';
+import Main from './component/Main';
 import './index.css';
 
 const middleeare = [thunk]

@@ -2,15 +2,16 @@ import React from 'react'
 import { Container, Grid } from '@material-ui/core'
 import { MustardButton, GreenButton } from '../CustomizedUI/Button'
 import MainTitle from './MainTitle';
+import { Link } from 'react-router-dom';
 
 function Footer() {
     return (
         <Grid container spacing={3}>
             <Grid item xs={12}>
-                <GreenButton fullWidth>CREATE ACCOUNT</GreenButton>
+                <GreenButton fullWidth >CREATE ACCOUNT</GreenButton>
             </Grid>
             <Grid item xs={12}>
-                <MustardButton fullWidth >SIGN IN</MustardButton>
+                <MustardButton fullWidth component={Link} to='login'>SIGN IN</MustardButton>
             </Grid>
         </Grid>
     )
@@ -18,17 +19,17 @@ function Footer() {
 
 const AuthMain = () => {
     return (
-        <div >
+        <div>
             <Container maxWidth="xs">
                 <Grid
                     container
-                    spacing={8}
+                    spacing={6}
                     direction="column"
                     alignItems="center"
                     justify="center"
                     style={{ minHeight: '100vh' }}
                 >
-                    <Grid item xs={12} align="center">
+                    <Grid item xs={12}>
                         <MainTitle />
                     </Grid>
                     <Grid item xs={12}>
