@@ -16,6 +16,7 @@ export const MustardButton = withStyles((theme) => {
             fontSize: "20px",
             fontWeight: "bold",
             // minWidth: "300px",
+            maxWidth: '400px',
         },
     })
 })(Button)
@@ -33,6 +34,7 @@ export const GreenButton = withStyles((theme) => {
             fontSize: "20px",
             fontWeight: "bold",
             // minWidth: "300px",
+            maxWidth: '400px',
         },
     })
 })(Button)
