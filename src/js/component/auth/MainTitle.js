@@ -1,11 +1,13 @@
 import React from 'react'
-import Coins from '../../svg/coins.svg'
+import Coins from '../../../svg/coins.svg'
 import { Typography, Grid } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles'
 
 const useStyles = makeStyles(theme => ({
     root: {
         marginTop: '5%',
+        // marginLeft: '10%',
+        // marginRight: '20%',
     },
     title: {
         fontWeight: 'bold',
@@ -28,7 +30,7 @@ export default function MainTitle() {
             >
                 <Typography variant="h4" component="h2" className={classes.title} >Money</Typography>
                 <Grid item xs={12} align="center">
-                    <Coins width='90%' height='100%' />
+                    <Coins width='80%' height='100%' />
                 </Grid>
             </Grid>
         </React.Fragment>

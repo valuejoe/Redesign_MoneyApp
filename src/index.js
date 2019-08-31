@@ -3,8 +3,8 @@ import ReactDOM from 'react-dom';
 import { createStore, compose, applyMiddleware } from 'redux';
 import { Provider } from 'react-redux';
 import thunk from 'redux-thunk';
-import RootReducer from './store/reducer/RootReducer';
-import Main from './component/Main';
+import RootReducer from './js/store/reducer/RootReducer';
+import Main from './js/component/Main';
 import './index.css';
 
 const middleeare = [thunk]

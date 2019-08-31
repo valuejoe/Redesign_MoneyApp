@@ -18,10 +18,14 @@ export const MainTextField = withStyles((theme) => {
                 '&.Mui-focused fieldset': {
                     borderColor: '#4e4949',
                     borderWidth: 3,
-
                 },
             },
-
+            '& input': {
+                '&::placeholder': {
+                    textOverflow: 'ellipsis !important',
+                    fontWeight: 'bold',
+                }
+            },
         },
     })
 })(TextField);
@@ -43,10 +47,16 @@ export const SecondTextField = withStyles((theme) => {
                 '&.Mui-focused fieldset': {
                     borderColor: '#bec2bb',
                     borderWidth: 3,
-
                 },
             },
-
+            '& input': {
+                color: 'white',
+                '&::placeholder': {
+                    textOverflow: 'ellipsis !important',
+                    fontWeight: 'bold',
+                    color: '#F1F5ED',
+                }
+            },
         },
     })
 })(TextField);

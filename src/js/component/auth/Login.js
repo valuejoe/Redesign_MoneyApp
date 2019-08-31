@@ -16,13 +16,27 @@ const useStyle = makeStyles(theme => ({
     typography: {
         marginBottom: theme.spacing(1),
     },
-    'input': {
-        '&::placeholder': {
-            textOverflow: 'ellipsis !important',
-            fontWeight: 'bold',
-        }
-    },
 }))
+
+const InputUI = ({ children, placeholder }) => {
+    return (
+        <React.Fragment>
+            <MainTextField
+                variant="outlined"
+                fullWidth
+                placeholder={placeholder}
+                InputProps={{
+                    startAdornment: (
+                        <InputAdornment position="start">
+                            {children}
+                        </InputAdornment>
+                    ),
+
+                }}
+            />
+        </React.Fragment>
+    )
+}
 
 function Footer() {
     const classes = useStyle()
@@ -30,34 +44,14 @@ function Footer() {
         <Container>
             <Grid container spacing={3}>
                 <Grid item xs={12} align="center">
-                    <MainTextField
-                        variant="outlined"
-                        fullWidth
-                        placeholder="Email"
-                        InputProps={{
-                            startAdornment: (
-                                <InputAdornment position="start">
-                                    <MailIcon style={{ color: '#7A7474' }} />
-                                </InputAdornment>
-                            ),
-                            classes: { input: classes.input }
-                        }}
-                    />
+                    <InputUI placeholder="Email">
+                        <MailIcon style={{ color: '#7A7474' }} />
+                    </InputUI>
                 </Grid>
                 <Grid item xs={12} align="center">
-                    <MainTextField
-                        variant="outlined"
-                        fullWidth
-                        placeholder="Password"
-                        InputProps={{
-                            startAdornment: (
-                                <InputAdornment position="start">
-                                    <LockIcon style={{ color: '#7A7474' }} />
-                                </InputAdornment>
-                            ),
-                            classes: { input: classes.input }
-                        }}
-                    />
+                    <InputUI placeholder="Password">
+                        <LockIcon style={{ color: '#7A7474' }} />
+                    </InputUI>
                 </Grid>
                 <Grid item xs={12} align="center">
                     <Typography className={classes.typography}>
@@ -75,7 +69,7 @@ function Footer() {
 function MobileDisplay() {
     const classes = useStyle()
     return (
-        <Container maxWidth="xs" className={classes.root}>
+        <Container maxWidth="md" className={classes.root}>
             <Grid
                 container
                 spacing={6}
@@ -97,7 +91,7 @@ function MobileDisplay() {
     )
 }
 
-export default function Login() {
+function Login() {
     return (
         <React.Fragment>
             <Grid container>
@@ -105,9 +99,7 @@ export default function Login() {
                     <MobileDisplay />
                 </Grid>
                 <Hidden smDown>
-                    <Grid
-                        item
-                        md={7}
+                    <Grid item md={7}
                         align="center"
                         style={{
                             backgroundColor: 'white',
@@ -116,11 +108,12 @@ export default function Login() {
                             paddingTop: '30vh'
                         }}
                     >
-                        <Footer style={{ marginTop: '100px' }} />
+                        <Footer />
                     </Grid>
                 </Hidden>
             </Grid>
-        </React.Fragment >
-
+        </React.Fragment>
     )
 }
+
+export default Login

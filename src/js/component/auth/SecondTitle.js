@@ -1,5 +1,5 @@
 import React from 'react'
-import Plant from '../../svg/plant.svg'
+import Plant from '../../../svg/plant.svg'
 import { Typography, Grid } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles'
 
