@@ -29,7 +29,7 @@ export default function MainTitle() {
             >
                 <Typography className={classes.title} >CREATE ACCOUNT</Typography>
                 <Grid item xs={12} align="center">
-                    <Plant width='70%' height='100%' />
+                    <Plant width='60%' height='100%' />
                 </Grid>
             </Grid>
         </React.Fragment>

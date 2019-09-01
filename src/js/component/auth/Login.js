@@ -1,92 +1,73 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link as RouterLink } from 'react-router-dom';
-import { Container, Grid, Typography, Hidden, Link, InputAdornment } from '@material-ui/core';
+import { Container, Grid, Typography, Hidden, Link, InputAdornment, TextField, Fade } from '@material-ui/core';
 import MailIcon from '@material-ui/icons/MailOutlineOutlined';
 import LockIcon from '@material-ui/icons/LockOutlined';
-import { makeStyles } from '@material-ui/core/styles';
 import MainTitle from './MainTitle';
 import { MustardButton } from '../CustomizedUI/Button';
-import { MainTextField } from '../CustomizedUI/Textfield';
+import UIstyle from './UIstyle';
+import GridColumnCenter from './GridColumnCenter'
 
-const useStyle = makeStyles(theme => ({
-    root: {
-        paddingLeft: theme.spacing(4),
-        paddingRight: theme.spacing(4),
-    },
-    typography: {
-        marginBottom: theme.spacing(1),
-    },
-}))
+function Main() {
+    const { blackInput, typography } = UIstyle()
 
-const InputUI = ({ children, placeholder }) => {
-    return (
-        <React.Fragment>
-            <MainTextField
-                variant="outlined"
-                fullWidth
-                placeholder={placeholder}
-                InputProps={{
-                    startAdornment: (
-                        <InputAdornment position="start">
-                            {children}
-                        </InputAdornment>
-                    ),
+    const [email, setEmail] = useState('')
+    const [password, setPassword] = useState('')
 
-                }}
-            />
-        </React.Fragment>
-    )
-}
-
-function Footer() {
-    const classes = useStyle()
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        console.log(`submit: {email: ${email}, password: ${password}}`)
+    }
     return (
         <Container>
-            <Grid container spacing={3}>
-                <Grid item xs={12} align="center">
-                    <InputUI placeholder="Email">
-                        <MailIcon style={{ color: '#7A7474' }} />
-                    </InputUI>
-                </Grid>
-                <Grid item xs={12} align="center">
-                    <InputUI placeholder="Password">
-                        <LockIcon style={{ color: '#7A7474' }} />
-                    </InputUI>
-                </Grid>
-                <Grid item xs={12} align="center">
-                    <Typography className={classes.typography}>
-                        <Link component={RouterLink} to="/signup" color="textSecondary">
-                            Don't Have an Account ?
-                        </Link>
-                    </Typography>
-                    <MustardButton fullWidth>Go</MustardButton>
-                </Grid>
-            </Grid>
-        </Container>
-    )
-}
+            <form onSubmit={handleSubmit}>
+                <Grid container spacing={2}>
+                    <Grid item xs={12} align="center">
+                        <TextField
+                            type="email"
+                            variant="outlined"
+                            fullWidth
+                            placeholder="Email"
+                            className={blackInput}
+                            onChange={(e) => setEmail(e.target.value)}
+                            InputProps={{
+                                startAdornment: (
+                                    <InputAdornment position="start">
+                                        <MailIcon style={{ color: '#7A7474' }} />
+                                    </InputAdornment>
+                                ),
 
-function MobileDisplay() {
-    const classes = useStyle()
-    return (
-        <Container maxWidth="md" className={classes.root}>
-            <Grid
-                container
-                spacing={6}
-                direction="column"
-                alignItems="center"
-                justify="center"
-                style={{ minHeight: '100vh' }}
-            >
-                <Grid item xs={12}>
-                    <MainTitle />
-                </Grid>
-                <Hidden mdUp>
-                    <Grid item xs={12}>
-                        <Footer />
+                            }}
+                        />
                     </Grid>
-                </Hidden>
-            </Grid>
+                    <Grid item xs={12} align="center">
+                        <TextField
+                            type="password"
+                            variant="outlined"
+                            fullWidth
+                            placeholder="Password"
+                            className={blackInput}
+                            onChange={(e) => setPassword(e.target.value)}
+                            InputProps={{
+                                startAdornment: (
+                                    <InputAdornment position="start">
+                                        <LockIcon style={{ color: '#7A7474' }} />
+                                    </InputAdornment>
+                                ),
+
+                            }}
+                        />
+                    </Grid>
+                    <Grid item xs={12} align="center">
+                        <Typography className={typography}>
+                            <Link component={RouterLink} to="/signup" color="textSecondary">
+                                Don't Have an Account ?
+                        </Link>
+                        </Typography>
+                        <MustardButton fullWidth type="submit">Go</MustardButton>
+                    </Grid>
+                </Grid>
+            </form>
         </Container>
     )
 }
@@ -94,24 +75,30 @@ function MobileDisplay() {
 function Login() {
     return (
         <React.Fragment>
-            <Grid container>
-                <Grid item xs={12} md={5}>
-                    <MobileDisplay />
-                </Grid>
-                <Hidden smDown>
-                    <Grid item md={7}
-                        align="center"
-                        style={{
-                            backgroundColor: 'white',
-                            margin: 0,
-                            minHeight: '100vh',
-                            paddingTop: '30vh'
-                        }}
-                    >
-                        <Footer />
+            <Fade in={true}>
+                <Grid container>
+                    <Grid item xs={12} md={5} className={UIstyle().root} style={{ backgroundColor: '#F1F5ED', }}>
+                        <GridColumnCenter>
+                            <Grid item xs={12}>
+                                <MainTitle />
+                            </Grid>
+                            <Hidden mdUp>
+                                <Grid item xs={12}>
+                                    <Main />
+                                </Grid>
+                            </Hidden>
+                        </GridColumnCenter>
                     </Grid>
-                </Hidden>
-            </Grid>
+                    <Hidden smDown>
+                        <Grid item md={7} style={{ backgroundColor: 'white' }}>
+                            <GridColumnCenter>
+                                <Main />
+                            </GridColumnCenter>
+                        </Grid>
+                    </Hidden>
+                </Grid>
+            </Fade>
+
         </React.Fragment>
     )
 }

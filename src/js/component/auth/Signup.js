@@ -1,6 +1,6 @@
 import React, { Component, useState } from 'react';
 import { Link as RouterLink } from 'react-router-dom';
-import { Container, Grid, Typography, Hidden, Link, InputAdornment, TextField } from '@material-ui/core';
+import { Container, Grid, Typography, Hidden, Link, InputAdornment, TextField, Fade } from '@material-ui/core';
 import MailIcon from '@material-ui/icons/MailOutlineOutlined';
 import LockIcon from '@material-ui/icons/LockOutlined';
 import PersonIcon from '@material-ui/icons/PersonOutline';
@@ -8,139 +8,143 @@ import { makeStyles } from '@material-ui/core/styles';
 import SecondTitle from './SecondTitle';
 import { GreenButton } from '../CustomizedUI/Button';
 import { SecondTextField, MainTextField } from '../CustomizedUI/Textfield';
+import UIstyle from './UIstyle';
+import GridColumnCenter from './GridColumnCenter'
 
-const useStyle = makeStyles(theme => ({
-    root: {
-        paddingLeft: theme.spacing(4),
-        paddingRight: theme.spacing(4),
-
-        height: '100vh',
-        overflow: 'auto',
-    },
-    typography: {
-        marginBottom: theme.spacing(1),
-    },
-}))
-
-const InputUI = ({ placeholder, color, children }) => {
-    return (
-        <React.Fragment>
-            {color === "white" && (
-                <SecondTextField
-                    variant="outlined"
-                    fullWidth
-                    placeholder={placeholder}
-                    InputProps={{
-                        startAdornment: (
-                            <InputAdornment position="start">
-                                {children}
-                            </InputAdornment>
-                        ),
-                    }}
-                />
-            )}
-            {color === "black" && (
-                <MainTextField
-                    variant="outlined"
-                    fullWidth
-                    placeholder={placeholder}
-                    InputProps={{
-                        startAdornment: (
-                            <InputAdornment position="start">
-                                {children}
-                            </InputAdornment>
-                        ),
-                    }}
-                />
-            )}
-
-        </React.Fragment>
-    )
-}
-
-function Main(props) {
-    let iconColor = { color: '#F1F5ED' }
-    if (props.color === 'black') {
-        iconColor = { color: '#7A7474' }
+function Main({ color }) {
+    let iconColor = { color: '#7A7474' }
+    if (color === 'white') {
+        iconColor = { color: '#F1F5ED' }
     }
-    const classes = useStyle()
+    const { blackInput, whiteInput, typography } = UIstyle()
+    const [username, setUsername] = useState('')
+    const [email, setEmail] = useState('')
+    const [password, setPassword] = useState('')
+    const [confirmPassword, setConfirmPassword] = useState('')
 
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        console.log(username)
+    }
     return (
         <Container>
-            <Grid container spacing={3}>
-                <Grid item xs={12} align="center">
-                    <InputUI placeholder="Username" color={props.color}>
-                        <PersonIcon style={iconColor} />
-                    </InputUI>
-                </Grid>
-                <Grid item xs={12} align="center">
-                    <InputUI placeholder="Mail" color={props.color}>
-                        <MailIcon style={iconColor} />
-                    </InputUI>
-                </Grid>
-                <Grid item xs={12} align="center">
-                    <InputUI placeholder="Password" color={props.color}>
-                        <LockIcon style={iconColor} />
-                    </InputUI>
-                </Grid>
-                <Grid item xs={12} align="center">
-                    <Typography className={classes.typography}>
-                        <Link component={RouterLink} to="/login" style={iconColor}>
-                            Already Have an Account ?
-                        </Link>
-                    </Typography>
-                    <GreenButton fullWidth>SUBMIT</GreenButton>
-                </Grid>
-            </Grid>
-        </Container>
-    )
-}
+            <form onSubmit={handleSubmit}>
+                <Grid container spacing={2}>
+                    <Grid item xs={12} align="center">
+                        <TextField
+                            type="text"
+                            variant="outlined"
+                            fullWidth
+                            placeholder="Username"
+                            className={color === 'white' ? whiteInput : blackInput}
+                            onChange={(e) => setUsername(e.target.value)}
+                            InputProps={{
+                                startAdornment: (
+                                    <InputAdornment position="start">
+                                        <PersonIcon style={iconColor} />
+                                    </InputAdornment>
+                                ),
 
-function MobileDisplay() {
-    const classes = useStyle()
-    return (
-        <Container maxWidth="md" className={classes.root} style={{ backgroundColor: '#DFA47C', }}>
-            <Grid
-                container
-                spacing={6}
-                direction="column"
-                alignItems="center"
-                justify="center"
-                style={{ minHeight: '100vh' }}
-            >
-                <Grid item xs={12}>
-                    <SecondTitle />
-                </Grid>
-                <Hidden mdUp>
-                    <Grid item xs={12}>
-                        <Main color="white" />
+                            }}
+                        />
                     </Grid>
-                </Hidden>
-            </Grid>
+                    <Grid item xs={12} align="center">
+                        <TextField
+                            type="email"
+                            variant="outlined"
+                            fullWidth
+                            placeholder="Email"
+                            className={color === 'white' ? whiteInput : blackInput}
+                            onChange={(e) => setEmail(e.target.value)}
+                            InputProps={{
+                                startAdornment: (
+                                    <InputAdornment position="start">
+                                        <MailIcon style={iconColor} />
+                                    </InputAdornment>
+                                ),
+
+                            }}
+                        />
+                    </Grid>
+                    <Grid item xs={12} align="center">
+                        <TextField
+                            type="password"
+                            variant="outlined"
+                            fullWidth
+                            placeholder="Password"
+                            className={color === 'white' ? whiteInput : blackInput}
+                            onChange={(e) => setPassword(e.target.value)}
+                            InputProps={{
+                                startAdornment: (
+                                    <InputAdornment position="start">
+                                        <LockIcon style={iconColor} />
+                                    </InputAdornment>
+                                ),
+
+                            }}
+                        />
+                    </Grid>
+                    <Grid item xs={12} align="center">
+                        <TextField
+                            type="password"
+                            variant="outlined"
+                            fullWidth
+                            placeholder="Confirm Password"
+                            className={color === 'white' ? whiteInput : blackInput}
+                            onChange={(e) => setConfirmPassword(e.target.value)}
+                            InputProps={{
+                                startAdornment: (
+                                    <InputAdornment position="start">
+                                        <LockIcon style={iconColor} />
+                                    </InputAdornment>
+                                ),
+
+                            }}
+                        />
+                    </Grid>
+                    <Grid item xs={12} align="center">
+                        <Typography className={typography}>
+                            <Link component={RouterLink} to="/login" style={iconColor}>
+                                Already Have an Account ?
+                        </Link>
+                        </Typography>
+                        <GreenButton fullWidth type="submit">SUBMIT</GreenButton>
+                    </Grid>
+                </Grid>
+            </form>
         </Container>
     )
 }
 
 function Signup() {
     return (
-        <div>
+        <Fade in={true}>
             <Grid container>
-                <Grid item xs={12} md={5}>
-                    <MobileDisplay />
+                <Grid item xs={12} md={5} className={UIstyle().root} style={{ backgroundColor: '#DFA47C', }}>
+                    <GridColumnCenter>
+                        <Grid item xs={12}>
+                            <SecondTitle />
+                        </Grid>
+                        <Hidden mdUp>
+                            <Grid item xs={12}>
+                                <Main color="white" />
+                            </Grid>
+                        </Hidden>
+                    </GridColumnCenter>
                 </Grid>
                 <Hidden smDown>
                     <Grid item md={7}
                         style={{
                             backgroundColor: 'white',
-                            margin: 0,
-                            minHeight: '100vh',
-                            paddingTop: '30vh'
                         }}>
-                        <Main color="black" />
+                        <GridColumnCenter>
+                            <Main />
+                        </GridColumnCenter>
+
                     </Grid>
                 </Hidden>
             </Grid>
-        </div>
+        </Fade>
     )
 }
 

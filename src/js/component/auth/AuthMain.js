@@ -5,6 +5,8 @@ import { MustardButton, GreenButton } from '../CustomizedUI/Button'
 import MainTitle from './MainTitle';
 import { Link } from 'react-router-dom';
 import { makeStyles } from '@material-ui/core/styles';
+import GridColumnCenter from './GridColumnCenter';
+import UIstyle from './UIstyle';
 
 const useStyle = makeStyles(theme => ({
     root: {
@@ -16,7 +18,7 @@ const useStyle = makeStyles(theme => ({
     }
 }))
 
-function Footer() {
+function Main() {
     return (
         <Container>
             <Grid container spacing={3}>
@@ -31,48 +33,30 @@ function Footer() {
     )
 }
 
-function MobileDisplay() {
-    const classes = useStyle()
-    return (
-        <Container maxWidth="md" className={classes.root}>
-            <Grid
-                container
-                spacing={6}
-                direction="column"
-                alignItems="center"
-                justify="center"
-                style={{ minHeight: '100vh' }}
-            >
-                <Grid item xs={12}>
-                    <MainTitle />
-                </Grid>
-                <Hidden mdUp>
-                    <Grid item xs={12}>
-                        <Footer />
-                    </Grid>
-                </Hidden>
-            </Grid>
-        </Container>
-    )
-}
-
 function AuthMain() {
+    const { root } = UIstyle()
     return (
         <React.Fragment>
             <Grid container>
-                <Grid item xs={12} md={5}>
-                    <MobileDisplay />
+                <Grid item xs={12} md={5} className={root}>
+                    <GridColumnCenter>
+                        <Grid item xs={12}>
+                            <MainTitle />
+                        </Grid>
+                        <Hidden mdUp>
+                            <Grid item xs={12}>
+                                <Main />
+                            </Grid>
+                        </Hidden>
+                    </GridColumnCenter>
                 </Grid>
                 <Hidden smDown>
                     <Grid item md={7}
                         align="center"
-                        style={{
-                            backgroundColor: 'white',
-                            margin: 0,
-                            minHeight: '100vh',
-                            paddingTop: '40vh'
-                        }}>
-                        <Footer />
+                        style={{ backgroundColor: 'white' }}>
+                        <GridColumnCenter>
+                            <Main />
+                        </GridColumnCenter>
                     </Grid>
                 </Hidden>
             </Grid>

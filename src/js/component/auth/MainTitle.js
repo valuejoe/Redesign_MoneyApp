@@ -30,7 +30,7 @@ export default function MainTitle() {
             >
                 <Typography variant="h4" component="h2" className={classes.title} >Money</Typography>
                 <Grid item xs={12} align="center">
-                    <Coins width='80%' height='100%' />
+                    <Coins width='70%' height='100%' />
                 </Grid>
             </Grid>
         </React.Fragment>
