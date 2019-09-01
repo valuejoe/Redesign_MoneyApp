@@ -6,8 +6,6 @@ import { makeStyles } from '@material-ui/core/styles'
 const useStyles = makeStyles(theme => ({
     root: {
         marginTop: '5%',
-        // marginLeft: '10%',
-        // marginRight: '20%',
     },
     title: {
         fontWeight: 'bold',

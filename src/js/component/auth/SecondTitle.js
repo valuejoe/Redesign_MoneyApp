@@ -13,7 +13,6 @@ const useStyles = makeStyles(theme => ({
         color: '#F1F5ED',
         marginBottom: theme.spacing(2),
     },
-
 }))
 
 export default function MainTitle() {

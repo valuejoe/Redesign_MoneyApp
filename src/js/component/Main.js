@@ -3,6 +3,7 @@ import { HashRouter, Route, Switch } from 'react-router-dom';
 import AuthMain from './auth/AuthMain';
 import Login from './auth/Login';
 import Signup from './auth/Signup'
+
 const Main = () => {
     return (
         <HashRouter>

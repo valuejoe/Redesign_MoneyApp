@@ -1,14 +1,12 @@
-import React, { Component, useState } from 'react';
+import React, { useState } from 'react';
 import { Link as RouterLink } from 'react-router-dom';
 import { Container, Grid, Typography, Hidden, Link, InputAdornment, TextField, Fade } from '@material-ui/core';
 import MailIcon from '@material-ui/icons/MailOutlineOutlined';
 import LockIcon from '@material-ui/icons/LockOutlined';
 import PersonIcon from '@material-ui/icons/PersonOutline';
-import { makeStyles } from '@material-ui/core/styles';
-import SecondTitle from './SecondTitle';
-import { GreenButton } from '../CustomizedUI/Button';
-import { SecondTextField, MainTextField } from '../CustomizedUI/Textfield';
 import UIstyle from './UIstyle';
+import { GreenButton } from '../CustomizedUI/Button';
+import SecondTitle from './SecondTitle';
 import GridColumnCenter from './GridColumnCenter'
 
 function Main({ color }) {
@@ -140,7 +138,6 @@ function Signup() {
                         <GridColumnCenter>
                             <Main />
                         </GridColumnCenter>
-
                     </Grid>
                 </Hidden>
             </Grid>

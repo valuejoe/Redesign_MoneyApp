@@ -3,9 +3,9 @@ import { Link as RouterLink } from 'react-router-dom';
 import { Container, Grid, Typography, Hidden, Link, InputAdornment, TextField, Fade } from '@material-ui/core';
 import MailIcon from '@material-ui/icons/MailOutlineOutlined';
 import LockIcon from '@material-ui/icons/LockOutlined';
-import MainTitle from './MainTitle';
-import { MustardButton } from '../CustomizedUI/Button';
 import UIstyle from './UIstyle';
+import { MustardButton } from '../CustomizedUI/Button';
+import MainTitle from './MainTitle';
 import GridColumnCenter from './GridColumnCenter'
 
 function Main() {
@@ -36,7 +36,6 @@ function Main() {
                                         <MailIcon style={{ color: '#7A7474' }} />
                                     </InputAdornment>
                                 ),
-
                             }}
                         />
                     </Grid>

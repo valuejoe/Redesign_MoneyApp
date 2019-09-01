@@ -1,22 +1,10 @@
-import { Link as RouterLink } from 'react-router-dom';
 import React from 'react'
-import { Container, Grid, Hidden, Typography } from '@material-ui/core'
+import { Link } from 'react-router-dom';
+import { Container, Grid, Hidden } from '@material-ui/core'
+import UIstyle from './UIstyle';
 import { MustardButton, GreenButton } from '../CustomizedUI/Button'
 import MainTitle from './MainTitle';
-import { Link } from 'react-router-dom';
-import { makeStyles } from '@material-ui/core/styles';
 import GridColumnCenter from './GridColumnCenter';
-import UIstyle from './UIstyle';
-
-const useStyle = makeStyles(theme => ({
-    root: {
-        paddingLeft: theme.spacing(4),
-        paddingRight: theme.spacing(4),
-    },
-    typography: {
-        marginBottom: theme.spacing(1),
-    }
-}))
 
 function Main() {
     return (
@@ -34,11 +22,10 @@ function Main() {
 }
 
 function AuthMain() {
-    const { root } = UIstyle()
     return (
         <React.Fragment>
             <Grid container>
-                <Grid item xs={12} md={5} className={root}>
+                <Grid item xs={12} md={5} className={UIstyle().root} style={{ backgroundColor: '#F1F5ED', }}>
                     <GridColumnCenter>
                         <Grid item xs={12}>
                             <MainTitle />
