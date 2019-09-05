@@ -8,53 +8,63 @@ import { MustardButton } from '../CustomizedUI/Button';
 import MainTitle from './MainTitle';
 import GridColumnCenter from './GridColumnCenter'
 
-function Main() {
-    const { blackInput, typography } = UIstyle()
+function InputRow(props) {
+    const { blackInput } = UIstyle()
+    const handleChange = (e) => {
+        props.onUsernameChange(e)
+    }
+    return (
+        <TextField
+            id={props.placeholder}
+            type={props.type}
+            variant="outlined"
+            fullWidth
+            placeholder={props.placeholder}
+            className={blackInput}
+            onChange={(e) => handleChange(e)}
+            InputProps={{
+                startAdornment: (
+                    <InputAdornment position="start">
+                        {props.icon}
+                    </InputAdornment>
+                ),
+            }}
+        />
+    )
+}
 
-    const [email, setEmail] = useState('')
-    const [password, setPassword] = useState('')
+function Main() {
+    const { typography } = UIstyle()
+
+    const [userdata, setUserdata] = useState('')
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        console.log(`submit: {email: ${email}, password: ${password}}`)
+        console.log(userdata)
     }
+
+    const handleOnUsernameChange = (e) => {
+        setUserdata({ ...userdata, [e.target.id]: e.target.value })
+    }
+
     return (
         <Container>
             <form onSubmit={handleSubmit}>
                 <Grid container spacing={2}>
                     <Grid item xs={12} align="center">
-                        <TextField
-                            type="email"
-                            variant="outlined"
-                            fullWidth
+                        <InputRow
+                            icon={<MailIcon style={{ color: '#7A7474' }} />}
                             placeholder="Email"
-                            className={blackInput}
-                            onChange={(e) => setEmail(e.target.value)}
-                            InputProps={{
-                                startAdornment: (
-                                    <InputAdornment position="start">
-                                        <MailIcon style={{ color: '#7A7474' }} />
-                                    </InputAdornment>
-                                ),
-                            }}
+                            type="email"
+                            onUsernameChange={handleOnUsernameChange}
                         />
                     </Grid>
                     <Grid item xs={12} align="center">
-                        <TextField
-                            type="password"
-                            variant="outlined"
-                            fullWidth
+                        <InputRow
+                            icon={<LockIcon style={{ color: '#7A7474' }} />}
                             placeholder="Password"
-                            className={blackInput}
-                            onChange={(e) => setPassword(e.target.value)}
-                            InputProps={{
-                                startAdornment: (
-                                    <InputAdornment position="start">
-                                        <LockIcon style={{ color: '#7A7474' }} />
-                                    </InputAdornment>
-                                ),
-
-                            }}
+                            type="password"
+                            onUsernameChange={handleOnUsernameChange}
                         />
                     </Grid>
                     <Grid item xs={12} align="center">
